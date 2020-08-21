@@ -1,0 +1,22 @@
+  <div class="row">
+      <label for="selectShape">Choose a shape:</label>
+      <select
+        name="selectShape"
+        id="selectShape"
+        [(ngModel)]="selectedId"
+        (change)="onSelect($event.target.value)" >
+          <option
+            *ngFor="let shape of shapes"
+            [value]="shape.id"
+          >{{ shape.text}}
+        </option>
+      </select>
+      <div class="row">
+        <div class="col-md-8">
+          <app-canvas #canvasComp></app-canvas>
+        </div>
+        <div class="col-md-4">
+          <app-shape-detail></app-shape-detail>
+        </div>
+      </div>
+  </div>
