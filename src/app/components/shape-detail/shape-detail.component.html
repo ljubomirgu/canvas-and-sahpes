@@ -1,1 +1,30 @@
-<p>shape-detail works!</p>
+<div id="dropdown">
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>ID:</strong></div>
+  <div class="panel-body">
+    <p *ngIf="selectedShape">{{ selectedShape.id }}</p>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Text:</strong></div>
+  <div class="panel-body">
+    <p *ngIf="selectedShape">{{ selectedShape.text }}</p>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading"><strong> Color:</strong></div>
+  <div class="panel-body">
+    <p *ngIf="selectedShape">{{ selectedShape.color }}</p>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading"><strong> Position:</strong></div>
+  <div class="panel-body">
+    <p *ngIf="selectedShape">
+      x: {{ selectedShape.position.xBegin }},
+      y: {{ selectedShape.position.yBegin }},
+      width: {{ selectedShape.position.rectWidth }},
+      height {{ selectedShape.position.rectHeight }}</p>
+  </div>
+</div>
+</div>

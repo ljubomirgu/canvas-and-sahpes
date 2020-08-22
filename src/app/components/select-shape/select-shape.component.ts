@@ -14,6 +14,8 @@ export class SelectShapeComponent implements OnInit {
   shapes: Rectangle[];
   selectedId: number;
   @ViewChild('canvasComp', { static: false })canvasComp;
+  @ViewChild('shapeDetail', { static: false })shapeDetail;
+
 
  // selectedShapes: Rectangle[];//
   //@Output() shapeSelected = new EventEmitter<Rectangle>();
@@ -40,6 +42,8 @@ export class SelectShapeComponent implements OnInit {
 
     //this.shapeSelected.emit(this.selectedShape)
     this.canvasComp.drawRectangle(this.selectedShape);
+
+
   }
 
 

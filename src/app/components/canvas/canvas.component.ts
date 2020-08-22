@@ -18,11 +18,13 @@ export class CanvasComponent implements OnInit {
     return this.canvas != null ? this.canvas.getContext('2d') : null;
   }
 
+
+
   constructor() { }
 
   ngOnInit(): void {
-
   }
+
   @Input() drawRectangle(selectedShape: Rectangle){
     this.selectedShape = selectedShape;
 
@@ -41,6 +43,7 @@ export class CanvasComponent implements OnInit {
         this.selectedShape.position.rectWidth,
         this.selectedShape.position.rectHeight);
     }
+    console.log("fillRct: ", this.ctx);
 
   }
 
