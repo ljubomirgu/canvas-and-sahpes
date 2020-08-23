@@ -30,7 +30,7 @@ export class CanvasComponent implements OnInit {
     let rectWidth = this.selectedShape.position.rectWidth;
     let rectHeight = this.selectedShape.position.rectHeight;
 
-    if(this.ctx != null){
+    if(this.ctx != null){ // if(this.ctx)
      // console.log("ctx: ", this.ctx)
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.fillStyle = this.selectedShape.color;
@@ -43,7 +43,9 @@ export class CanvasComponent implements OnInit {
       this.ctx.fillStyle = "black";
       this.ctx.font = "20px sans-serif";
       this.ctx.textAlign = 'center';
-      this.ctx.fillText(this.selectedShape.text, xBegin + rectWidth/2 , yBegin + (rectHeight + 20)/2, rectWidth);
+      this.ctx.textBaseline = "middle";
+      this.ctx.fillText(this.selectedShape.text, xBegin + rectWidth/2 , yBegin + (rectHeight)/2, rectWidth);
+      // this.ctx.fillText(this.selectedShape.text, xBegin + rectWidth/2 , yBegin + (rectHeight + 20)/2, rectWidth);
      // console.log("fillRct: ", this.ctx);
     }
 
