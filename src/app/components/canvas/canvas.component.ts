@@ -18,8 +18,6 @@ export class CanvasComponent implements OnInit {
     return this.canvas != null ? this.canvas.getContext('2d') : null;
   }
 
-
-
   constructor() { }
 
   ngOnInit(): void {
@@ -27,23 +25,28 @@ export class CanvasComponent implements OnInit {
 
   @Input() drawRectangle(selectedShape: Rectangle){
     this.selectedShape = selectedShape;
+    let xBegin = this.selectedShape.position.xBegin;
+    let yBegin  =  this.selectedShape.position.yBegin;
+    let rectWidth = this.selectedShape.position.rectWidth;
+    let rectHeight = this.selectedShape.position.rectHeight;
 
     if(this.ctx != null){
      // console.log("ctx: ", this.ctx)
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.fillStyle = this.selectedShape.color;
-      console.log("style: ",this.selectedShape.color )
+    //  console.log("style: ",this.selectedShape.color )
 
-     console.log("Dimension: ",this.selectedShape.position.xBegin, this.selectedShape.position.yBegin,
-     this.selectedShape.position.rectWidth, this.selectedShape.position.rectHeight)
+    //  console.log("Dimension: ",this.selectedShape.position.xBegin, this.selectedShape.position.yBegin,
+    //  this.selectedShape.position.rectWidth, this.selectedShape.position.rectHeight)
 
-      this.ctx.fillRect(
-        this.selectedShape.position.xBegin,
-        this.selectedShape.position.yBegin,
-        this.selectedShape.position.rectWidth,
-        this.selectedShape.position.rectHeight);
+      this.ctx.fillRect(xBegin, yBegin, rectWidth, rectHeight);
+      this.ctx.fillStyle = "black";
+      this.ctx.font = "20px sans-serif";
+      this.ctx.textAlign = 'center';
+      this.ctx.fillText(this.selectedShape.text, xBegin + rectWidth/2 , yBegin + (rectHeight + 20)/2, rectWidth);
+     // console.log("fillRct: ", this.ctx);
     }
-    console.log("fillRct: ", this.ctx);
+
 
   }
 
