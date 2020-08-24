@@ -8,23 +8,74 @@
 <div class="panel panel-default">
   <div class="panel-heading"><strong>Text:</strong></div>
   <div class="panel-body">
-    <p *ngIf="selectedShape">{{ selectedShape.text }}</p>
+    <input
+      *ngIf="selectedShape"
+      type="text"
+      class="form-control"
+      (input) = "onChangeShapeText($event)"
+      placeholder="{{ selectedShape.text }}">
   </div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading"><strong> Color:</strong></div>
   <div class="panel-body">
-    <p *ngIf="selectedShape">{{ selectedShape.color }}</p>
+    <input
+      *ngIf="selectedShape"
+      type="text"
+      class="form-control"
+      (input) = "onChangeShapeColor($event)"
+      placeholder="{{ selectedShape.color }}">
   </div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading"><strong> Position:</strong></div>
   <div class="panel-body">
-    <p *ngIf="selectedShape">
-      x: {{ selectedShape.position.xBegin }},
-      y: {{ selectedShape.position.yBegin }},
-      width: {{ selectedShape.position.rectWidth }},
-      height {{ selectedShape.position.rectHeight }}</p>
+      <table>
+        <tr>
+            <td>X:</td>
+            <td><input
+                *ngIf="selectedShape"
+                name="xBegin"
+                type="number"
+                class="form-control"
+                (input) = "onChangeXBegin($event)"
+                placeholder="{{ selectedShape.position.xBegin }}">
+            </td>
+        </tr>
+        <tr>
+            <td>Y:</td>
+            <td><input
+                *ngIf="selectedShape"
+                name="yBegin"
+                type="number"
+                class="form-control"
+                (input) = "onChangeYBegin($event)"
+                placeholder="{{ selectedShape.position.yBegin }}">
+            </td>
+        </tr>
+        <tr>
+            <td>Width:</td>
+            <td><input
+                *ngIf="selectedShape"
+                name="rectWidth"
+                type="number"
+                class="form-control"
+                (input) = "onChangeRectWidth($event)"
+                placeholder="{{ selectedShape.position.rectWidth }}">
+            </td>
+        </tr>
+        <tr>
+            <td>Height:</td>
+            <td><input
+                *ngIf="selectedShape"
+                name="rectHight"
+                type="number"
+                class="form-control"
+                (input) = "onChangeRectHeight($event)"
+                placeholder="{{ selectedShape.position.rectHeight }}">
+            </td>
+        </tr>
+      </table>
   </div>
 </div>
 </div>

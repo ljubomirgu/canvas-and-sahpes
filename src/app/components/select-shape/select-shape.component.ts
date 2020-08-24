@@ -16,7 +16,6 @@ export class SelectShapeComponent implements OnInit {
   @ViewChild('canvasComp', { static: false })canvasComp;
   @ViewChild('shapeDetail', { static: false })shapeDetail;
 
-
  // selectedShapes: Rectangle[];//
   //@Output() shapeSelected = new EventEmitter<Rectangle>();
 
@@ -31,21 +30,25 @@ export class SelectShapeComponent implements OnInit {
      console.log(this.shapes);
 
      this.selectedShape = this.shapes.find(shape => shape.id == id);
-    // this.selectedShapes = this.shapes.filter(shape => shape.id === id);
-    // this.selectedId = this.shapes.map(({id}) => id)[0];
-
-    // this.selectedShape = this.shapes[id];
-
-    // console.log("1***  ",this.selectedShape);
-    // console.log("2. ",this.selectedId);
-    // console.log("3. ",this.selectedShapes);
-
-    //this.shapeSelected.emit(this.selectedShape)
     this.canvasComp.drawRectangle(this.selectedShape);
-
-
   }
 
+  updateObject(event: Rectangle){
+    this.selectedShape = event;//subscribe?
+    this.canvasComp.drawRectangle(this.selectedShape);
+  }
+
+
+
+  //24.08.2020. za slučaj da svaki input ima svoj EventEmitter shape-detail.component.ts
+  // updateText($event){
+  //   this.selectedShape.text= $event;
+  //   this.canvasComp.drawRectangle(this.selectedShape);
+  // }
+  // updateColor($event){
+  //   this.selectedShape.color= $event;
+  //   this.canvasComp.drawRectangle(this.selectedShape);
+  // }
 
 
 }

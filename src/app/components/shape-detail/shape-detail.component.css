@@ -2,6 +2,18 @@
   margin-top: 25px;
 }
 
-.panel-body{
-  height: 40px;
+input::placeholder{
+  color: rgb(36, 24, 204);
+  font-weight: normal;
+}
+
+/* .panel-body{
+  height: 65px;
+} */
+
+.positionDiv{
+  display: inline-block;
+}
+div label {
+  display: block;
 }

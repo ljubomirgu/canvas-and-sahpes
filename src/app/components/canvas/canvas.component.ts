@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Rectangle } from 'src/app/rectangle';
+import { ShapeService } from 'src/app/services/shape.service';
 
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.css']
+  styleUrls: ['./canvas.component.css'],
+  providers: [ShapeService]
 })
 export class CanvasComponent implements OnInit {
 
@@ -18,12 +20,14 @@ export class CanvasComponent implements OnInit {
     return this.canvas != null ? this.canvas.getContext('2d') : null;
   }
 
-  constructor() { }
+  constructor(private shapeService: ShapeService) { }
 
   ngOnInit(): void {
   }
 
+
   @Input() drawRectangle(selectedShape: Rectangle){
+
     this.selectedShape = selectedShape;
     let xBegin = this.selectedShape.position.xBegin;
     let yBegin  =  this.selectedShape.position.yBegin;
@@ -44,7 +48,10 @@ export class CanvasComponent implements OnInit {
       this.ctx.font = "20px sans-serif";
       this.ctx.textAlign = 'center';
       this.ctx.textBaseline = "middle";
-      this.ctx.fillText(this.selectedShape.text, xBegin + rectWidth/2 , yBegin + (rectHeight)/2, rectWidth);
+      this.ctx.fillText(this.selectedShape.text, xBegin + rectWidth/2 , yBegin + (rectHeight)/2, rectWidth); // umesto ovog ide donji red sa service:
+
+     // this.ctx.fillText(this.shapeService.updatedShapeText, xBegin + rectWidth/2 , yBegin + (rectHeight)/2, rectWidth);
+
       // this.ctx.fillText(this.selectedShape.text, xBegin + rectWidth/2 , yBegin + (rectHeight + 20)/2, rectWidth);
      // console.log("fillRct: ", this.ctx);
     }
