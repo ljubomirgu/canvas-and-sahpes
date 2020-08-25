@@ -26,10 +26,10 @@ export class SelectShapeComponent implements OnInit {
   }
 
   onSelect(id: number){
-     console.log(id);
-     console.log(this.shapes);
+    //  console.log(id);
+    //  console.log(this.shapes);
 
-     this.selectedShape = this.shapes.find(shape => shape.id == id);
+    this.selectedShape = this.shapes.find(shape => shape.id == id);
     this.canvasComp.drawRectangle(this.selectedShape);
   }
 

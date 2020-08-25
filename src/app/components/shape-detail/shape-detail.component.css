@@ -10,10 +10,14 @@ input::placeholder{
 /* .panel-body{
   height: 65px;
 } */
-
+/*
 .positionDiv{
   display: inline-block;
 }
 div label {
   display: block;
+} */
+
+#colorPicker{
+  width: 70px;
 }

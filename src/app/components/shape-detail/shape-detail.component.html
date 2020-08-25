@@ -21,10 +21,11 @@
   <div class="panel-body">
     <input
       *ngIf="selectedShape"
-      type="text"
+      type="color"
+      id="colorPicker"
       class="form-control"
       (input) = "onChangeShapeColor($event)"
-      placeholder="{{ selectedShape.color }}">
+      value="{{ selectedShape.color }}">
   </div>
 </div>
 <div class="panel panel-default">
