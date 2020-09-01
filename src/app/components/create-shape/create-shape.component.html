@@ -37,11 +37,10 @@
           name="color"
           #color="ngModel"
           [(ngModel)]="newRectangle.color"
-          id="colorPicker"
         >
       </div>
     </div>
-    <div formGroupName="position">
+    <!-- <div formGroupName="position"> -->
     <div class="panel panel-default">
       <div class="panel-heading"><strong> Position:</strong></div>
       <div class="panel-body">
@@ -56,6 +55,7 @@
                 [(ngModel)]="newRectangle.position.xBegin"
                 class="form-control"
                 placeholder="x coordinate"
+                required
               >
             </td>
           </tr>
@@ -69,6 +69,7 @@
                 [(ngModel)]="newRectangle.position.yBegin"
                 class="form-control"
                 placeholder="y coordinate"
+                required
                >
             </td>
           </tr>
@@ -82,6 +83,8 @@
                 [(ngModel)]="newRectangle.position.rectWidth"
                 class="form-control"
                 placeholder="rectangle width"
+                required
+                min="0"
               >
             </td>
           </tr>
@@ -95,16 +98,18 @@
                 [(ngModel)]="newRectangle.position.rectHeight"
                 class="form-control"
                 placeholder="rectangle height"
+                required
+                min="0"
               >
             </td>
           </tr>
         </table>
       </div>
-    </div>
+    <!-- </div> -->
     </div>
     <hr>
     <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!rectangleForm.form.valid">Save</button>
   </form>
   </div>
 
@@ -116,6 +121,7 @@
       <div class="panel-body">
         <input
           type="text"
+          name="text"
           #text="ngModel"
           [(ngModel)]="newCircle.text"
           class="form-control"
@@ -129,6 +135,7 @@
         <input
           type="color"
           id="colorPicker"
+          name="color"
           #color="ngModel"
           [(ngModel)]="newCircle.color"
           class="form-control"
@@ -140,14 +147,15 @@
       <div class="panel-body">
         <input
           type="color"
-          id="colorPicker"
+          id="borderColorPicker"
+          name="borderColor"
           #borderColor="ngModel"
           [(ngModel)]="newCircle.borderColor"
           class="form-control"
         >
       </div>
     </div>
-    <div formGroupName="position">
+    <!-- <div formGroupName="position"> -->
     <div class="panel panel-default">
       <div class="panel-heading"><strong> Position:</strong></div>
       <div class="panel-body">
@@ -162,6 +170,7 @@
                 [(ngModel)]="newCircle.position.xBegin"
                 class="form-control"
                 placeholder="x coordinate"
+                required
               >
             </td>
           </tr>
@@ -175,6 +184,7 @@
                 [(ngModel)]="newCircle.position.yBegin"
                 class="form-control"
                 placeholder="y coordinate"
+                required
               >
             </td>
           </tr>
@@ -182,22 +192,25 @@
             <td>r:</td>
             <td>
               <input
-                name="rectWidth"
+                name="radius"
                 type="number"
                 #radius="ngModel"
                 [(ngModel)]="newCircle.position.radius"
                 class="form-control"
                 placeholder="radius"
+                required
+                min="0"
               >
+              <!-- <div [hidden]="radius.pristine" class="alert alert-danger">Radius is required</div> -->
             </td>
           </tr>
         </table>
       </div>
     </div>
-    </div>
+    <!-- </div> -->
     <hr>
     <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
-    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!circleForm.form.valid">Save</button>
   </form>
   </div>
 

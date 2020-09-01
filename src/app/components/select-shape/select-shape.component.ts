@@ -18,9 +18,10 @@ import { Circle } from 'src/app/circle';
 })
 export class SelectShapeComponent implements OnInit {
 
+  addedShape: boolean = false;
   // selectedShape: Rectangle;
   // shapes: Rectangle[];//zakomentarisano jer je dodato:
-
+  //lastShape: Shape;
   //25.08.2020.
   selectedSh: Shape;//
   shapess: Shape[];//
@@ -38,9 +39,14 @@ export class SelectShapeComponent implements OnInit {
   constructor(private router: Router, private shapeService: ShapeService) { }
 
   ngOnInit(): void {
+    console.log("addedShape ", this.addedShape);//0109
     this.fetchShapes();
     //  this.shapes = RECTANGLES;
     //  this.shapess = SHAPES;//
+    this.ckeckAddedShape();//0109
+   // this.setLastShape();//0109
+   console.log("addedShape ", this.addedShape);//0109
+
   }
 
   fetchShapes(){
@@ -49,6 +55,13 @@ export class SelectShapeComponent implements OnInit {
       console.log(this.shapess);
     });
   }
+
+  ckeckAddedShape(){//0109
+    this.addedShape = this.shapeService.addedShape;
+  }
+  // setLastShape(){//0109
+  //   this.lastShape = this.shapess[this.shapess.length-1];
+  // }
 
   //ima nova metoda onSelectShape()
   // onSelect(id: number){

@@ -13,13 +13,15 @@
       </select>
     </label> -->
     <!-- <div class="col-md-10"> -->
-    <label for="selectSh">Choose a shape:
+    <label  for="selectSh">Choose a shape:
       <select
         name="selectSh"
         id="selectSh"
         [(ngModel)]="selectedId"
         (change)="onSelectShape($event.target.value)" >
           <option disabled selected value style="display:none"></option>
+          <!-- <option *ngIf="addedShape && shapess">{{ shapess[shapess.length-1].text }}</option> -->
+          <!-- <option> {{ addedShape&&shapess ? shapess[shapess.length-1].text : ''}}</option> -->
           <option
             *ngFor="let shape of shapess"
             [value]="shape._id"

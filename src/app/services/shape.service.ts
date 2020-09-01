@@ -7,14 +7,15 @@ import { Circle } from '../circle';
 
 @Injectable({ providedIn: 'root'})
 export class ShapeService{
-  shapeText: string;
+  // shapeText: string;
 
-  updateShapeText(text: string){
-    this.shapeText = text;
-   }
-  public get updatedShapeText() : string {
-    return this.shapeText;
-  }
+  // updateShapeText(text: string){
+  //   this.shapeText = text;
+  //  }
+  // public get updatedShapeText() : string {
+  //   return this.shapeText;
+  // }
+  addedShape: boolean = false;//0109
 
   uri = 'http://localhost:4000';
 
@@ -44,11 +45,8 @@ export class ShapeService{
 
   addShape(someShape: any){
        return this.http.post(`${this.uri}/shapes/add`, someShape);
+      // this.addedShape = true;
   }
-
-
-
-
 
   updateShape(id: string, text: string, color: string, borderColor: string): Observable<Object>{
     const shape = {
