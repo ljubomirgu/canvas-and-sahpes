@@ -1,0 +1,205 @@
+<div class="createComp">
+  <div *ngIf="!(chosenRectangle || chosenCircle)">
+  <label for="selectShape">Choose a shape:
+    <select
+      name="selectShape"
+      id="selectShape"
+      (change)="onSelect($event.target.value)" >
+        <option disabled selected value style="display:none"></option>
+        <option value="rectangle">rectangle</option>
+        <option value="circle">circle</option>
+    </select>
+  </label>
+  <hr>
+  <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
+  </div>
+
+  <div *ngIf="chosenRectangle">
+  <form name="rectangleForm" #rectangleForm="ngForm" (ngSubmit)="onSubmitCreateRectangle()">
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>Text:</strong></div>
+      <div class="panel-body">
+        <input
+          type="text"
+          name="text"
+          #text="ngModel"
+          [(ngModel)]="newRectangle.text"
+          class="form-control"
+          placeholder="text"
+        >
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong> Color:</strong></div>
+      <div class="panel-body">
+        <input
+          type="color"
+          name="color"
+          #color="ngModel"
+          [(ngModel)]="newRectangle.color"
+          id="colorPicker"
+        >
+      </div>
+    </div>
+    <div formGroupName="position">
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong> Position:</strong></div>
+      <div class="panel-body">
+        <table>
+          <tr>
+            <td>x:</td>
+            <td>
+              <input
+                name="xBegin"
+                type="number"
+                #xBegin="ngModel"
+                [(ngModel)]="newRectangle.position.xBegin"
+                class="form-control"
+                placeholder="x coordinate"
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>y:</td>
+            <td>
+              <input
+                name="yBegin"
+                type="number"
+                #yBegin="ngModel"
+                [(ngModel)]="newRectangle.position.yBegin"
+                class="form-control"
+                placeholder="y coordinate"
+               >
+            </td>
+          </tr>
+          <tr>
+            <td>Width:</td>
+            <td>
+              <input
+                name="rectWidth"
+                type="number"
+                #rectWidth="ngModel"
+                [(ngModel)]="newRectangle.position.rectWidth"
+                class="form-control"
+                placeholder="rectangle width"
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>Height:</td>
+            <td>
+              <input
+                name="rectHight"
+                type="number"
+                #rectHeight="ngModel"
+                [(ngModel)]="newRectangle.position.rectHeight"
+                class="form-control"
+                placeholder="rectangle height"
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    </div>
+    <hr>
+    <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+  </div>
+
+
+  <div *ngIf="chosenCircle">
+  <form name="circleForm" #circleForm="ngForm" (ngSubmit)="onSubmitCreateCircle()">
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong>Text:</strong></div>
+      <div class="panel-body">
+        <input
+          type="text"
+          #text="ngModel"
+          [(ngModel)]="newCircle.text"
+          class="form-control"
+          placeholder="circle text"
+         >
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong> Color:</strong></div>
+      <div class="panel-body">
+        <input
+          type="color"
+          id="colorPicker"
+          #color="ngModel"
+          [(ngModel)]="newCircle.color"
+          class="form-control"
+        >
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong> Border color:</strong></div>
+      <div class="panel-body">
+        <input
+          type="color"
+          id="colorPicker"
+          #borderColor="ngModel"
+          [(ngModel)]="newCircle.borderColor"
+          class="form-control"
+        >
+      </div>
+    </div>
+    <div formGroupName="position">
+    <div class="panel panel-default">
+      <div class="panel-heading"><strong> Position:</strong></div>
+      <div class="panel-body">
+        <table>
+          <tr>
+            <td>x:</td>
+            <td>
+              <input
+                name="xBegin"
+                type="number"
+                #xBegin="ngModel"
+                [(ngModel)]="newCircle.position.xBegin"
+                class="form-control"
+                placeholder="x coordinate"
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>y:</td>
+            <td>
+              <input
+                name="yBegin"
+                type="number"
+                #yBegin="ngModel"
+                [(ngModel)]="newCircle.position.yBegin"
+                class="form-control"
+                placeholder="y coordinate"
+              >
+            </td>
+          </tr>
+          <tr>
+            <td>r:</td>
+            <td>
+              <input
+                name="rectWidth"
+                type="number"
+                #radius="ngModel"
+                [(ngModel)]="newCircle.position.radius"
+                class="form-control"
+                placeholder="radius"
+              >
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    </div>
+    <hr>
+    <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+  </div>
+
+</div>
+

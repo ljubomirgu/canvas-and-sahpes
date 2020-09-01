@@ -1,6 +1,7 @@
-#selectShape{
+#selectSh{
   width: 250px;
   margin-top: 30px;
+  height: 34px;
 }
 
 select {
@@ -11,4 +12,14 @@ select {
 }
 option {
   padding-left: 10px;
+}
+
+
+#selectSh{
+  width: 250px;
+  margin-top: 30px;
+}
+
+button{
+  margin-left: 90px;
 }

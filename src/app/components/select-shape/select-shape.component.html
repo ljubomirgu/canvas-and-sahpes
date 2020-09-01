@@ -1,5 +1,5 @@
   <div class="row">
-      <label for="selectShape">Choose a shape:
+      <!-- <label for="selectShape">Choose a shape:
       <select
         name="selectShape"
         id="selectShape"
@@ -11,7 +11,27 @@
           >{{ shape.text}}
         </option>
       </select>
+    </label> -->
+    <!-- <div class="col-md-10"> -->
+    <label for="selectSh">Choose a shape:
+      <select
+        name="selectSh"
+        id="selectSh"
+        [(ngModel)]="selectedId"
+        (change)="onSelectShape($event.target.value)" >
+          <option disabled selected value style="display:none"></option>
+          <option
+            *ngFor="let shape of shapess"
+            [value]="shape._id"
+          >{{ shape.text}}
+        </option>
+      </select>
     </label>
+    <!-- </div>
+    <div class="col-md-2"> -->
+      <button class="btn btn-primary" routerLink="/create" >Create new shape</button>
+    <!-- </div> -->
+
       <div class="row">
         <div class="col-md-8">
           <app-canvas #canvasComp></app-canvas>
@@ -19,8 +39,9 @@
         <div class="col-md-4">
           <app-shape-detail
             #shapeDetail
-            [selectedShape]="selectedShape"
-            (updatedShapeObject)="updateObject($event)"></app-shape-detail>
+            (updatedShapeRectangle)="updateShape($event)"
+            (updatedShapeCircle)="updateShape($event)"></app-shape-detail>
+            <!-- (updatedShape)="updatedShape($event)"</app-shape-detail> -->
         </div>
       </div>
   </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Rectangle } from 'src/app/rectangle';
 import { ShapeService } from 'src/app/services/shape.service';
+import { Circle } from 'src/app/circle';
+import { Shape } from 'src/app/shape';
 
 @Component({
   selector: 'app-shape-detail',
@@ -10,43 +12,92 @@ import { ShapeService } from 'src/app/services/shape.service';
 
 })
 export class ShapeDetailComponent implements OnInit {
-  @Input() selectedShape: Rectangle;
+  //@Input() selectedShape: Rectangle;//15:51 ovo se koristilo u svim dole onChangeShape...metodama umesto sadašnjeg selectedRectangle
 
-
+  //26.08.
+  selectedRectangle: Rectangle;
+  selectedCircle: Circle;
+ // @Input() selectedSh: Shape;
 
   updatedObject: Rectangle;
-  @Output() updatedShapeObject = new EventEmitter<Rectangle>();//
+  @Output() updatedShapeRectangle = new EventEmitter<Rectangle>();//
+  //26.08.
+  @Output() updatedShapeCircle = new EventEmitter<Circle>();
+  //@Output() updatedShape = new EventEmitter<Shape>();
 
-  // constructor(private shapeService: ShapeService) { }
+  constructor(private shapeService: ShapeService) { }
 
   ngOnInit(): void {
   }
 
-  onChangeShapeText(event: Event){
-      this.selectedShape.text=(<HTMLInputElement>event.target).value;
-      this.updatedShapeObject.emit(this.selectedShape);//observable?
-    }
-    onChangeShapeColor(event: Event){
-      this.selectedShape.color=(<HTMLInputElement>event.target).value;
-      this.updatedShapeObject.emit(this.selectedShape);//observable?
-    }
+  //methods for updating rectangle attributes:
+  onChangeRectText(event: Event){
+    this.selectedRectangle.text=(<HTMLInputElement>event.target).value;
+    this.updatedShapeRectangle.emit(this.selectedRectangle);//observable?
+  }
+  onChangeRectColor(event: Event){
+    this.selectedRectangle.color=(<HTMLInputElement>event.target).value;
+    this.updatedShapeRectangle.emit(this.selectedRectangle);//observable?
+  }
 
-    onChangeXBegin(event: Event){
-      this.selectedShape.position.xBegin= +(<HTMLInputElement>event.target).value;;
-      this.updatedShapeObject.emit(this.selectedShape);//observable?
-    }
-    onChangeYBegin(event: Event){
-      this.selectedShape.position.yBegin= +(<HTMLInputElement>event.target).value;;
-      this.updatedShapeObject.emit(this.selectedShape);//observable?
-    }
-    onChangeRectWidth(event: Event){
-      this.selectedShape.position.rectWidth= +(<HTMLInputElement>event.target).value;;
-      this.updatedShapeObject.emit(this.selectedShape);//observable?
-    }
-    onChangeRectHeight(event: Event){
-      this.selectedShape.position.rectHeight= +(<HTMLInputElement>event.target).value;;
-      this.updatedShapeObject.emit(this.selectedShape);//observable?
-    }
+  onChangeRectXBegin(event: Event){
+    this.selectedRectangle.position.xBegin= +(<HTMLInputElement>event.target).value;;
+    this.updatedShapeRectangle.emit(this.selectedRectangle);//observable?
+  }
+  onChangeRectYBegin(event: Event){
+    this.selectedRectangle.position.yBegin= +(<HTMLInputElement>event.target).value;;
+    this.updatedShapeRectangle.emit(this.selectedRectangle);//observable?
+  }
+  onChangeRectWidth(event: Event){
+    this.selectedRectangle.position.rectWidth= +(<HTMLInputElement>event.target).value;;
+    this.updatedShapeRectangle.emit(this.selectedRectangle);//observable?
+  }
+  onChangeRectHeight(event: Event){
+    this.selectedRectangle.position.rectHeight= +(<HTMLInputElement>event.target).value;;
+    this.updatedShapeRectangle.emit(this.selectedRectangle);//observable?
+  }
+
+
+  //
+  setRectangle(selectedRect: Rectangle){
+    this.selectedRectangle = selectedRect;
+    this.selectedCircle = null;
+  }
+  setCircle(selectedCircle: Circle){
+    this.selectedCircle = selectedCircle;
+    this.selectedRectangle = null;
+  }
+
+  //methods for updating circle attributes:
+  onChangeCircleText(event: Event){
+    this.selectedCircle.text = (<HTMLInputElement>event.target).value;
+    this.updatedShapeCircle.emit(this.selectedCircle);
+  }
+  onChangeCircleColor(event: Event){
+    this.selectedCircle.color = (<HTMLInputElement>event.target).value;
+    this.updatedShapeCircle.emit(this.selectedCircle);
+  }
+  onChangeCircleBorderColor(event: Event){
+    this.selectedCircle.borderColor = (<HTMLInputElement>event.target).value;
+    this.updatedShapeCircle.emit(this.selectedCircle);
+  }
+  onChangeCircleXBegin(event: Event){
+    this.selectedCircle.position.xBegin = +(<HTMLInputElement>event.target).value;
+    this.updatedShapeCircle.emit(this.selectedCircle);
+  }
+  onChangeCircleYBegin(event: Event){
+    this.selectedCircle.position.yBegin = +(<HTMLInputElement>event.target).value;
+    this.updatedShapeCircle.emit(this.selectedCircle);
+  }
+  onChangeCircleRadius(event: Event){
+    this.selectedCircle.position.radius = +(<HTMLInputElement>event.target).value;
+    this.updatedShapeCircle.emit(this.selectedCircle);
+  }
+
+    // onChangeText(event: Event){
+    //   this.selectedSh.text= (<HTMLInputElement>event.target).value;
+    //   this.updatedShape.emit(this.selectedSh);
+    // }
 
 
 //24.08.2020. za slučaj da svaki input ima poseban EventEmitter:
