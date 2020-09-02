@@ -1,17 +1,17 @@
 <div class="createComp">
   <div *ngIf="!(chosenRectangle || chosenCircle)">
-  <label for="selectShape">Choose a shape:
-    <select
-      name="selectShape"
-      id="selectShape"
-      (change)="onSelect($event.target.value)" >
+    <label for="selectShape">Choose a shape:
+      <select
+        name="selectShape"
+        id="selectShape"
+        (change)="onSelect($event.target.value)" >
         <option disabled selected value style="display:none"></option>
         <option value="rectangle">rectangle</option>
         <option value="circle">circle</option>
-    </select>
-  </label>
-  <hr>
-  <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
+      </select>
+    </label>
+    <hr>
+    <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
   </div>
 
   <div *ngIf="chosenRectangle">
@@ -40,7 +40,6 @@
         >
       </div>
     </div>
-    <!-- <div formGroupName="position"> -->
     <div class="panel panel-default">
       <div class="panel-heading"><strong> Position:</strong></div>
       <div class="panel-body">
@@ -105,7 +104,6 @@
           </tr>
         </table>
       </div>
-    <!-- </div> -->
     </div>
     <hr>
     <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
@@ -155,7 +153,6 @@
         >
       </div>
     </div>
-    <!-- <div formGroupName="position"> -->
     <div class="panel panel-default">
       <div class="panel-heading"><strong> Position:</strong></div>
       <div class="panel-body">
@@ -207,7 +204,6 @@
         </table>
       </div>
     </div>
-    <!-- </div> -->
     <hr>
     <button type="button" class="btn btn-secondary" routerLink="/shapes">Back</button>
     <button class="btn btn-primary" type="submit" [disabled]="!circleForm.form.valid">Save</button>

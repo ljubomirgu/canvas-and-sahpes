@@ -13,60 +13,38 @@ import { Rectangle } from 'src/app/rectangle';
   styleUrls: ['./create-shape.component.css']
 })
 export class CreateShapeComponent implements OnInit {
-  chosenRectangle = false;
-  chosenCircle = false;
-
+  chosenRectangle: boolean = false;
+  chosenCircle: boolean = false;
+  resId: string;
   newRectangle: Rectangle;
-  // newRectangle: {
-  //   text: string,
-  //   color: string,
-  //   position: {xBegin: number, yBegin: number, rectWidth: number, rectHeight: number}
-  // };
   newCircle: Circle;
 
   rectangleForm = new FormGroup({
     text: new FormControl(''),
     color: new FormControl('#ffffff'),
-    // position: new FormGroup({
-      xBegin: new FormControl(0, Validators.min(0)),
-      yBegin: new FormControl(0, Validators.min(0)),
-      rectWidth: new FormControl(0, [Validators.required, Validators.min(0)]),
-      rectHeight: new FormControl(0, [Validators.required, Validators.min(0)])
-    // })
+    xBegin: new FormControl(0, Validators.min(0)),
+    yBegin: new FormControl(0, Validators.min(0)),
+    rectWidth: new FormControl(0, [Validators.required, Validators.min(0)]),
+    rectHeight: new FormControl(0, [Validators.required, Validators.min(0)])
   })
 
   circleForm = new FormGroup({
     text: new FormControl(''),
     color: new FormControl('#ffffff'),
     borderColor: new FormControl('#ffffff'),
-    // position: new FormGroup({
-      xBegin: new FormControl(0, Validators.min(0)),
-      yBegin: new FormControl(0, Validators.min(0)),
-      radius: new FormControl(0, [Validators.required, Validators.min(0)])
-    // })
+    xBegin: new FormControl(0, Validators.min(0)),
+    yBegin: new FormControl(0, Validators.min(0)),
+    radius: new FormControl(0, [Validators.required, Validators.min(0)])
   })
 
   constructor(private shapeService: ShapeService, private router: Router) { }
 
   ngOnInit(): void {
-   // this.setNewRectangle();
-  //  this.newCircle = {} as Circle;
-  //  this.newRectangle = {} as Rectangle;
-  this.newRectangle = new Rectangle('','','#ffffff',null,null,null,null);
-  this.newCircle = new Circle('','','#ffffff','#ffffff',null,null,null)
-
-   console.log("newCircle ", this.newCircle);//////
-   console.log("newRectangle", this.newRectangle);//////
+    this.newRectangle = new Rectangle('','','#ffffff',null,null,null,null);
+    this.newCircle = new Circle('','','#ffffff','#ffffff',null,null,null)
+    console.log("newCircle ", this.newCircle);//////
+    console.log("newRectangle", this.newRectangle);//////
   }
-
-  // setNewRectangle(){
-  //   this.newRectangle.text = '';
-  //   this.newRectangle.color='';
-  //   this.newRectangle.position.xBegin = 0;
-  //   this.newRectangle.position.yBegin = 0;
-  //   this.newRectangle.position.rectWidth = 0;
-  //   this.newRectangle.position.rectHeight = 0;
-  // }
 
   onSelect(shape: string){
     if(shape === "rectangle"){
@@ -78,7 +56,6 @@ export class CreateShapeComponent implements OnInit {
     }
     console.log("chosenRect: ", this.chosenRectangle);
     console.log("chosenCirc: ", this.chosenCircle);
-
   }
 
   // onChangeRectText(event: Event){
@@ -132,11 +109,13 @@ export class CreateShapeComponent implements OnInit {
       }
     }
     this.shapeService.addShape(shape).subscribe((res) => {
-      console.log('Add circle ',res);/////
+      console.log('Added circle ',res);/////
       this.router.navigate(['/shapes']);
-      this.shapeService.addedShape=true;//0109
+      this.shapeService.addedShape=true;
+      this.shapeService.setCreatedShapeId(res._id);
     });
   }
+
   onSubmitCreateRectangle(){
     console.log("On submit Rect: ", this.newRectangle);/////
     const shape = {
@@ -150,11 +129,11 @@ export class CreateShapeComponent implements OnInit {
       }
     }
     this.shapeService.addShape(shape).subscribe((res) => {
-      console.log('Add rect ',res);/////
+      console.log('Added rect ',res);/////
       this.router.navigate(['/shapes']);
-      this.shapeService.addedShape=true;//0109
+      this.shapeService.addedShape=true;
+      this.shapeService.setCreatedShapeId(res._id);
     });
   }
-
 
 }

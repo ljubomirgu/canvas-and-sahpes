@@ -5,15 +5,13 @@
 }
 
 select {
-  /* text-align: center;
-  text-align-last: center; */
   padding-left: 10px;
   font-weight: normal;
 }
+
 option {
   padding-left: 10px;
 }
-
 
 #selectSh{
   width: 250px;

@@ -4,19 +4,12 @@
     <div class="panel panel-default">
       <div class="panel-heading"><strong>ID:</strong></div>
       <div class="panel-body">
-      <!-- <p *ngIf="selectedShape">{{ selectedShape.id }}</p> -->
         <p >{{ selectedRectangle._id }}</p>
       </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading"><strong>Text:</strong></div>
       <div class="panel-body">
-        <!-- <input
-          *ngIf="selectedShape"
-          type="text"
-          class="form-control"
-          (input) = "onChangeShapeText($event)"
-          placeholder="{{ selectedShape.text }}"> -->
         <input
           type="text"
           class="form-control"
@@ -27,13 +20,6 @@
     <div class="panel panel-default">
       <div class="panel-heading"><strong> Color:</strong></div>
       <div class="panel-body">
-        <!-- <input
-          *ngIf="selectedShape"
-          type="color"
-          id="colorPicker"
-          class="form-control"
-          (input) = "onChangeShapeColor($event)"
-          value="{{ selectedShape.color }}"> -->
         <input
           type="color"
           id="colorPicker"
@@ -48,14 +34,6 @@
         <table>
           <tr>
             <td>x:</td>
-            <!-- <td><input
-                *ngIf="selectedShape"
-                name="xBegin"
-                type="number"
-                class="form-control"
-                (input) = "onChangeXBegin($event)"
-                placeholder="{{ selectedShape.position.xBegin }}">
-            </td> -->
             <td><input
               name="xBegin"
               type="number"
@@ -66,14 +44,6 @@
           </tr>
           <tr>
             <td>y:</td>
-            <!-- <td><input
-                *ngIf="selectedShape"
-                name="yBegin"
-                type="number"
-                class="form-control"
-                (input) = "onChangeYBegin($event)"
-                placeholder="{{ selectedShape.position.yBegin }}">
-            </td> -->
             <td><input
               name="yBegin"
               type="number"
@@ -84,14 +54,6 @@
           </tr>
           <tr>
             <td>Width:</td>
-            <!-- <td><input
-                *ngIf="selectedShape"
-                name="rectWidth"
-                type="number"
-                class="form-control"
-                (input) = "onChangeRectWidth($event)"
-                placeholder="{{ selectedShape.position.rectWidth }}">
-            </td> -->
             <td><input
               name="rectWidth"
               type="number"
@@ -102,14 +64,6 @@
           </tr>
           <tr>
             <td>Height:</td>
-            <!-- <td><input
-                *ngIf="selectedShape"
-                name="rectHight"
-                type="number"
-                class="form-control"
-                (input) = "onChangeRectHeight($event)"
-                placeholder="{{ selectedShape.position.rectHeight }}">
-            </td> -->
             <td><input
               name="rectHight"
               type="number"

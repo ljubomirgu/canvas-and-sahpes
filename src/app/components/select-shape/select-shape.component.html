@@ -1,18 +1,4 @@
   <div class="row">
-      <!-- <label for="selectShape">Choose a shape:
-      <select
-        name="selectShape"
-        id="selectShape"
-        [(ngModel)]="selectedId"
-        (change)="onSelect($event.target.value)" >
-          <option
-            *ngFor="let shape of shapes"
-            [value]="shape.id"
-          >{{ shape.text}}
-        </option>
-      </select>
-    </label> -->
-    <!-- <div class="col-md-10"> -->
     <label  for="selectSh">Choose a shape:
       <select
         name="selectSh"
@@ -20,30 +6,20 @@
         [(ngModel)]="selectedId"
         (change)="onSelectShape($event.target.value)" >
           <option disabled selected value style="display:none"></option>
-          <!-- <option *ngIf="addedShape && shapess">{{ shapess[shapess.length-1].text }}</option> -->
-          <!-- <option> {{ addedShape&&shapess ? shapess[shapess.length-1].text : ''}}</option> -->
-          <option
-            *ngFor="let shape of shapess"
-            [value]="shape._id"
-          >{{ shape.text}}
-        </option>
+          <option *ngFor="let shape of shapess" [value]="shape._id">{{ shape.text}}</option>
       </select>
     </label>
-    <!-- </div>
-    <div class="col-md-2"> -->
-      <button class="btn btn-primary" routerLink="/create" >Create new shape</button>
-    <!-- </div> -->
-
-      <div class="row">
-        <div class="col-md-8">
-          <app-canvas #canvasComp></app-canvas>
-        </div>
-        <div class="col-md-4">
-          <app-shape-detail
-            #shapeDetail
-            (updatedShapeRectangle)="updateShape($event)"
-            (updatedShapeCircle)="updateShape($event)"></app-shape-detail>
-            <!-- (updatedShape)="updatedShape($event)"</app-shape-detail> -->
-        </div>
+    <button class="btn btn-primary" routerLink="/create" >Create new shape</button>
+    <div class="row">
+      <div class="col-md-8">
+        <app-canvas #canvasComp></app-canvas>
       </div>
+      <div class="col-md-4">
+        <app-shape-detail
+          #shapeDetail
+          (updatedShapeRectangle)="updateShape($event)"
+          (updatedShapeCircle)="updateShape($event)">
+        </app-shape-detail>
+      </div>
+    </div>
   </div>

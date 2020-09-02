@@ -28,16 +28,4 @@ export const RECTANGLES: Rectangle[] = [
 ];
 
 
-// selected: Rectangle;
-// rectangles: Rectangle[] ;
-
-// ngOnInit(){
-//   this.rectangles = RECTANGLES
-// }
-
-// onSelect(id: number){
-//   this.selected = this.rectangles.map(({ id }) => id);//id atribut a ne index niza
-//  // Map, FILTER
-//  return this.rectangles[id];
-// }
 

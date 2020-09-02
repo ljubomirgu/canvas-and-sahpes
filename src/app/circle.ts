@@ -1,9 +1,6 @@
 import { Shape } from './shape';
 
 export class Circle extends Shape {
-  // id: number;
-  // text: string;
-  // color: string;
   borderColor: string;
   position: {xBegin:number, yBegin: number, radius: number};
 
