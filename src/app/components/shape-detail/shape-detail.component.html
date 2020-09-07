@@ -1,156 +1,34 @@
 <div id="detailComp">
-  <h5>SHAPE DETAIL:</h5>
-  <div *ngIf="selectedRectangle">
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong>ID:</strong></div>
-      <div class="panel-body">
-        <p >{{ selectedRectangle._id }}</p>
-      </div>
+  <h5>Shape detail:</h5>
+  <hr>
+  <form name="updateForm" (ngSubmit)="onSubmitUpdate()">
+
+  <div *ngFor="let shape of arrayShape">
+    <div *ngIf="shape.propertyType == 'text'">
+      <app-text-component
+        (updateText)="textUpdating($event)"
+        [propertyTitle]="shape.propertyTitle"
+        [propertyValue]="shape.propertyValue">
+      </app-text-component>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong>Text:</strong></div>
-      <div class="panel-body">
-        <input
-          type="text"
-          class="form-control"
-          (input) = "onChangeRectText($event)"
-          placeholder="{{ selectedRectangle.text }}">
-      </div>
+    <div *ngIf="shape.propertyType == 'number'">
+      <app-number-component
+        (updateNumber)="numberUpdating($event)"
+        [propertyTitle]="shape.propertyTitle"
+        [propertyValue]="shape.propertyValue">
+      </app-number-component>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong> Color:</strong></div>
-      <div class="panel-body">
-        <input
-          type="color"
-          id="colorPicker"
-          class="form-control"
-          (input) = "onChangeRectColor($event)"
-          value="{{ selectedRectangle.color }}">
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong> Position:</strong></div>
-      <div class="panel-body">
-        <table>
-          <tr>
-            <td>x:</td>
-            <td><input
-              name="xBegin"
-              type="number"
-              class="form-control"
-              (input) = "onChangeRectXBegin($event)"
-              placeholder="{{ selectedRectangle.position.xBegin }}">
-            </td>
-          </tr>
-          <tr>
-            <td>y:</td>
-            <td><input
-              name="yBegin"
-              type="number"
-              class="form-control"
-              (input) = "onChangeRectYBegin($event)"
-              placeholder="{{ selectedRectangle.position.yBegin }}">
-            </td>
-          </tr>
-          <tr>
-            <td>Width:</td>
-            <td><input
-              name="rectWidth"
-              type="number"
-              class="form-control"
-              (input) = "onChangeRectWidth($event)"
-              placeholder="{{ selectedRectangle.position.rectWidth }}">
-            </td>
-          </tr>
-          <tr>
-            <td>Height:</td>
-            <td><input
-              name="rectHight"
-              type="number"
-              class="form-control"
-              (input) = "onChangeRectHeight($event)"
-              placeholder="{{ selectedRectangle.position.rectHeight }}">
-            </td>
-          </tr>
-        </table>
-      </div>
+    <div *ngIf="shape.propertyType == 'color'">
+      <app-color-component
+        (updateColor)="colorUpdating($event)"
+        [propertyTitle]="shape.propertyTitle"
+        [propertyValue]="shape.propertyValue">
+      </app-color-component>
     </div>
   </div>
-  <div *ngIf="selectedCircle">
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong>ID:</strong></div>
-      <div class="panel-body">
-        <p >{{ selectedCircle._id }}</p>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong>Text:</strong></div>
-      <div class="panel-body">
-        <input
-          type="text"
-          class="form-control"
-          (input) = "onChangeCircleText($event)"
-          placeholder="{{ selectedCircle.text }}">
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong> Color:</strong></div>
-      <div class="panel-body">
-        <input
-          type="color"
-          id="colorPicker"
-          class="form-control"
-          (input) = "onChangeCircleColor($event)"
-          value="{{ selectedCircle.color }}">
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong> Border color:</strong></div>
-      <div class="panel-body">
-        <input
-          type="color"
-          id="colorPicker"
-          class="form-control"
-          (input) = "onChangeCircleBorderColor($event)"
-          value="{{ selectedCircle.borderColor }}">
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading"><strong> Position:</strong></div>
-      <div class="panel-body">
-        <table>
-          <tr>
-            <td>x:</td>
-            <td><input
-              name="xBegin"
-              type="number"
-              class="form-control"
-              (input) = "onChangeCircleXBegin($event)"
-              placeholder="{{ selectedCircle.position.xBegin }}">
-            </td>
-          </tr>
-          <tr>
-            <td>y:</td>
-            <td><input
-              name="yBegin"
-              type="number"
-              class="form-control"
-              (input) = "onChangeCircleYBegin($event)"
-              placeholder="{{ selectedCircle.position.yBegin }}">
-            </td>
-          </tr>
-          <tr>
-            <td>r:</td>
-            <td><input
-              name="rectWidth"
-              type="number"
-              class="form-control"
-              (input) = "onChangeCircleRadius($event)"
-              placeholder="{{ selectedCircle.position.radius }}">
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
+  <div *ngIf="_selectedShape">
+    <hr>
+    <button class="btn btn-primary" type="submit" >Save changes</button>
   </div>
+</form>
 </div>

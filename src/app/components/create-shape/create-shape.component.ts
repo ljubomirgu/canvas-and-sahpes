@@ -15,7 +15,6 @@ import { Rectangle } from 'src/app/rectangle';
 export class CreateShapeComponent implements OnInit {
   chosenRectangle: boolean = false;
   chosenCircle: boolean = false;
-  resId: string;
   newRectangle: Rectangle;
   newCircle: Circle;
 
@@ -42,8 +41,6 @@ export class CreateShapeComponent implements OnInit {
   ngOnInit(): void {
     this.newRectangle = new Rectangle('','','#ffffff',null,null,null,null);
     this.newCircle = new Circle('','','#ffffff','#ffffff',null,null,null)
-    console.log("newCircle ", this.newCircle);//////
-    console.log("newRectangle", this.newRectangle);//////
   }
 
   onSelect(shape: string){
@@ -54,50 +51,9 @@ export class CreateShapeComponent implements OnInit {
       this.chosenRectangle = false;
       this.chosenCircle = true;
     }
-    console.log("chosenRect: ", this.chosenRectangle);
-    console.log("chosenCirc: ", this.chosenCircle);
   }
 
-  // onChangeRectText(event: Event){
-  //   console.log('1. ', event);
-  //   this.newRectangle.text = (<HTMLInputElement>event.target).value;
-  // }
-  // onChangeRectColor(event: Event){
-  //   this.newRectangle.color = (<HTMLInputElement>event.target).value;
-  // }
-  // onChangeRectX(event: Event){
-  //   this.newRectangle.position.xBegin = +(<HTMLInputElement>event.target).value;
-  // }
-  // onChangeRectY(event: Event){
-  //   this.newRectangle.position.yBegin = +(<HTMLInputElement>event.target).value;
-  // }
-  // onChangeRectWidth(event: Event){
-  //   this.newRectangle.position.rectWidth = +(<HTMLInputElement>event.target).value;
-  // }
-  // onChangeRectHeight(event: Event){
-  //   this.newRectangle.position.xBegin = +(<HTMLInputElement>event.target).value;
-  // }
-  // onChangeCircleText(event: Event){
-  //   this.newCircle.text = this.newRectangle.text = (<HTMLInputElement>event.target).value;
-  // }
-  // onChangeCircleColor(event: Event){
-  //   this.newCircle.color = (<HTMLInputElement>event.target).value;
-  // }
-  // onChangeCircleBorderColor(event: Event){
-  //   this.newCircle.borderColor = (<HTMLInputElement>event.target).value;
-  // }
-  // onChangeCircleX(event: Event){
-  //   this.newCircle.position.xBegin = +(<HTMLInputElement>event.target).value;
-  // }
-  // onChangeCircleY(event: Event){
-  //   this.newCircle.position.yBegin = +(<HTMLInputElement>event.target).value;
-  // }
-  // onChangeCircleRadius(event: Event){
-  //   this.newCircle.position.radius = +(<HTMLInputElement>event.target).value;
-  // }
-
   onSubmitCreateCircle(){
-    console.log("On submit Circle: ", this.newCircle);/////
     const shape = {
       text: this.newCircle.text,
       color: this.newCircle.color,
@@ -109,15 +65,13 @@ export class CreateShapeComponent implements OnInit {
       }
     }
     this.shapeService.addShape(shape).subscribe((res) => {
-      console.log('Added circle ',res);/////
       this.router.navigate(['/shapes']);
-      this.shapeService.addedShape=true;
-      this.shapeService.setCreatedShapeId(res._id);
+      this.shapeService.addedShape = true;
+      this.shapeService.setCreatedShape(res);
     });
   }
 
   onSubmitCreateRectangle(){
-    console.log("On submit Rect: ", this.newRectangle);/////
     const shape = {
       text: this.newRectangle.text,
       color: this.newRectangle.color,
@@ -129,10 +83,9 @@ export class CreateShapeComponent implements OnInit {
       }
     }
     this.shapeService.addShape(shape).subscribe((res) => {
-      console.log('Added rect ',res);/////
       this.router.navigate(['/shapes']);
-      this.shapeService.addedShape=true;
-      this.shapeService.setCreatedShapeId(res._id);
+      this.shapeService.addedShape = true;
+      this.shapeService.setCreatedShape(res);
     });
   }
 

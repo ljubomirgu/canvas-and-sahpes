@@ -1,0 +1,10 @@
+<div >
+  <label ><strong>{{ propertyTitle }}</strong>  </label>
+    <input
+      type="number"
+      class="form-control"
+      (input) = "onChangeNumber($event)"
+      value="{{ propertyValue }}"
+      min="0"
+      >
+</div>

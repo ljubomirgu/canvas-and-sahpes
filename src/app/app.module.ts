@@ -13,6 +13,9 @@ import { ShapeDetailComponent } from './components/shape-detail/shape-detail.com
 import { CreateShapeComponent } from './components/create-shape/create-shape.component';
 
 import { ShapeService } from './services/shape.service';
+import { NumberComponentComponent } from './components/shape-detail/shape-components/number-component/number-component.component';
+import { TextComponentComponent } from './components/shape-detail/shape-components/text-component/text-component.component';
+import { ColorComponentComponent } from './components/shape-detail/shape-components/color-component/color-component.component';
 
 const routes: Routes = [
   { path: 'create', component: CreateShapeComponent},
@@ -26,7 +29,10 @@ const routes: Routes = [
     SelectShapeComponent,
     CanvasComponent,
     ShapeDetailComponent,
-    CreateShapeComponent
+    CreateShapeComponent,
+    NumberComponentComponent,
+    TextComponentComponent,
+    ColorComponentComponent
   ],
   imports: [
     BrowserModule,

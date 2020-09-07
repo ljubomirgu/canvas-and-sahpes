@@ -3,22 +3,20 @@
       <select
         name="selectSh"
         id="selectSh"
-        [(ngModel)]="selectedId"
-        (change)="onSelectShape($event.target.value)" >
-          <option disabled selected value style="display:none"></option>
-          <option *ngFor="let shape of shapess" [value]="shape._id">{{ shape.text}}</option>
+        [(ngModel)]="selected"
+        (change)="onSelectShape()">
+          <option  *ngFor="let shape of shapess" [ngValue]="shape"> {{ shape.text }}</option>
       </select>
     </label>
     <button class="btn btn-primary" routerLink="/create" >Create new shape</button>
     <div class="row">
-      <div class="col-md-8">
-        <app-canvas #canvasComp></app-canvas>
+      <div class="col-md-7">
+        <app-canvas [selectedShape]="selected"></app-canvas>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-5">
         <app-shape-detail
-          #shapeDetail
-          (updatedShapeRectangle)="updateShape($event)"
-          (updatedShapeCircle)="updateShape($event)">
+          [selectedShape]="selected"
+          (updatedShape)="updateShape($event)">
         </app-shape-detail>
       </div>
     </div>

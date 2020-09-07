@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Rectangle } from 'src/app/rectangle';
 import { ShapeService } from 'src/app/services/shape.service';
 import { Circle } from 'src/app/circle';
+import { Shape } from 'src/app/shape';
 
 @Component({
   selector: 'app-canvas',
@@ -10,10 +11,16 @@ import { Circle } from 'src/app/circle';
   styleUrls: ['./canvas.component.css'],
   providers: [ShapeService]
 })
-export class CanvasComponent implements OnInit {
+export class CanvasComponent implements OnInit, OnChanges {
 
-  @Input() selectedRectangle: Rectangle;
-  @Input() selectedCircle: Circle;
+  private _selectedShape: Shape;
+
+  @Input() set selectedShape(selectedShape: Shape){
+    this._selectedShape = selectedShape;
+    if(this._selectedShape != null && this.ctx != null){
+     this.drawShape();
+   }
+  }
 
   @ViewChild('canvasRectangle', { static: false }) canvasRectangle: ElementRef;
 
@@ -31,47 +38,18 @@ export class CanvasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() drawRectangle(selectedShape: Rectangle){
+  ngOnChanges(changes: SimpleChanges){
+    // const selectedValue = changes['selected'];//0509
+    // if(selectedValue.previousValue != null){//0509
+    //   this.selected = selectedValue.currentValue;//0509
+    //   if(this.selected != null && this.ctx != null){//0509
+    //     this.drawShape();//0509
+    //   }//0509
+    // }//0509
+ }
 
-    this.selectedRectangle = selectedShape;//a ako dobija Shape parametar treba <Rectangle>selectedShape
-    let xBegin = this.selectedRectangle.position.xBegin;
-    let yBegin  =  this.selectedRectangle.position.yBegin;
-    let rectWidth = this.selectedRectangle.position.rectWidth;
-    let rectHeight = this.selectedRectangle.position.rectHeight;
-
-    if(this.ctx != null){
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      this.ctx.fillStyle = this.selectedRectangle.color;
-      this.ctx.fillRect(xBegin, yBegin, rectWidth, rectHeight);
-      this.ctx.fillStyle = "black";
-      this.ctx.font = "20px sans-serif";
-      this.ctx.textAlign = 'center';
-      this.ctx.textBaseline = "middle";
-      this.ctx.fillText(this.selectedRectangle.text, xBegin + rectWidth/2 , yBegin + (rectHeight)/2, rectWidth);
-    }
+  drawShape(){
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this._selectedShape.draw(this.ctx);
   }
-
-  @Input() drawCircle(selectedShape: Circle){
-    this.selectedCircle = selectedShape
-    if(this.ctx != null){
-       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-       this.ctx.fillStyle = this.selectedCircle.color;
-       this.ctx.beginPath();
-       this.ctx.arc(this.selectedCircle.position.xBegin, this.selectedCircle.position.yBegin,
-        this.selectedCircle.position.radius, 0, 2*Math.PI);
-       this.ctx.fill();
-       this.ctx.strokeStyle = this.selectedCircle.borderColor;
-       this.ctx.lineWidth = 3;
-       this.ctx.stroke();
-
-       this.ctx.fillStyle = "black";
-       this.ctx.font = "20px sans-serif";
-       this.ctx.textAlign = 'center';
-       this.ctx.textBaseline = "middle";
-       this.ctx.fillText(this.selectedCircle.text,
-          this.selectedCircle.position.xBegin,
-          this.selectedCircle.position.yBegin,
-          this.selectedCircle.position.radius*2)
-  }}
-
 }

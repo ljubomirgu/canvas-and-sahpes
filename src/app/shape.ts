@@ -1,4 +1,4 @@
-export class Shape{
+export abstract class Shape{
   _id: string;
   text: string;
   color: string;
@@ -8,4 +8,6 @@ export class Shape{
     this.text = text;
     this.color = color;
   }
+
+ public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
